@@ -99,7 +99,7 @@
         <!-- ./login form -->
       </div>
       <div class="col-md-6">
-        <h4>Don't have an account yet? Register!</h4>
+        <h4>Don't have an account yet? I dont care!</h4>
 
         <!-- register form -->
         <form method="post" action="profile.php">
