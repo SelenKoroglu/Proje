@@ -1,4 +1,5 @@
 <?php
+require_once 'social_media2.sql';
     $day = 0;
     $month = 0;
     $year = 0;
@@ -29,14 +30,6 @@
             $registerError .= "<br>Birthday is invalid.";
         }
         $bdate = $_POST["year"] . "-" . $_POST["month"] . "-" . $_POST["day"];
-        if(!isset($_POST["gender"]))
-        {
-            $registerError .= "<br>Select a gender.";
-        }
-        else
-        {
-            $gender = $_POST["gender"];
-        }
         $pass = $_POST["pass"];
         if(strlen($pass) < 4)
         {
@@ -54,9 +47,9 @@
                 $pass = password_hash($pass, PASSWORD_BCRYPT) ;
                 $date=date("Y-m-d",strtotime($bdate));
                 try {
-                    require_once './Helpers/_db.php';
-                    $stmt = $db->prepare("insert into user (name, surname, email, bdate, gender, pass, profile_photo) values (?,?,?,?,?,?,?)") ;
-                    $stmt->execute( [$name, $surname, $email, $date, $gender, $pass, $result["filepath"]]) ;
+                    require_once 'social_media2.sql';
+                    $stmt = $db->prepare("insert into user (name, surname, email, bdate, profile_photo, pass) values (?,?,?,?,?,?)") ;
+                    $stmt->execute( [$name, $surname, $email, $date,  ,$result["filepath"], $pass ]) ;
                     header("Location: index.php?newUser");
                     exit ;
                 } catch (Exception $ex) {
@@ -69,6 +62,12 @@
             }
         }
   }*/
+  if( isset($_POST["register"]))
+  {
+    require_once 'social_media2.sql';
+    $stmt = $db->prepare("insert into user (name, surname, email, bdate,  pass) values (?,?,?,?,?)") ;
+    $stmt->execute( [$name, $surname, $email, $date, $pass ]) ;
+  }
 ?>
 <!DOCTYPE html>
 <html>

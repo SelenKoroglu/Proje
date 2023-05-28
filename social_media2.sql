@@ -137,6 +137,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `user_surname_index` (`surname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
 
+insert into user(name,surname,email,bdate,pass) values('irem', 'abc', 'irem.abc@gmail.com', '2003-10-09', '4321');
+commit;
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
 --
